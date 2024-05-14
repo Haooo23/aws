@@ -1,7 +1,7 @@
 <?php
 $hostname="db";
 $username="root";
-$password="pmariadb";
+$password="mariadb";
 $database="utente";
 
 $conn=new mysqli($hostname,$username,$password,$database);

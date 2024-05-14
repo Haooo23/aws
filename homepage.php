@@ -16,36 +16,36 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             font-family: Arial, sans-serif;
             margin: 20px auto;
             max-width: 800px;
-            background-color: #1a1a1a; /* Dark background */
-            color: #e0e0e0; /* Light text */
+            background-color: #1a1a1a; 
+            color: #e0e0e0; 
             padding: 20px;
         }
         h1, h2 {
-            text-align: center; /* Center main titles */
-            color: #007bff; /* Blue titles */
+            text-align: center; 
+            color: #007bff; 
             margin-bottom: 20px;
         }
         .card {
-            border: 1px solid #333; /* Dark border */
+            border: 1px solid #333; 
             border-radius: 10px;
             margin-bottom: 20px;
-            background-color: #2a2a2a; /* Dark card background */
-            color: #e0e0e0; /* Light card text */
+            background-color: #2a2a2a; 
+            color: #e0e0e0; 
         }
         .card-body {
             padding: 20px;
         }
         pre {
-            background-color: #333; /* Dark code background */
-            border: 1px solid #555; /* Dark border */
+            background-color: #333; 
+            border: 1px solid #555; 
             border-radius: 4px;
             padding: 10px;
             overflow-x: auto;
-            color: #e0e0e0; /* Light code text */
+            color: #e0e0e0; 
         }
         code {
             font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            color: #99ccff; /* Light code text */
+            color: #99ccff; 
         }
     </style>
 </head>

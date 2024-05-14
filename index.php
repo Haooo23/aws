@@ -68,6 +68,7 @@ session_start();
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
+            width: 80%;
         }
 
         .login-button {

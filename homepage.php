@@ -200,12 +200,23 @@ volumes:
                     <li>Access MariaDB as the root user:
                         <pre><code>mariadb -u root -pmariadb</code></pre></li>
                     <li>Create a new user for the database and grant all privileges to the new user.</li>
-                    <pre><code> CREATE USER 'username'@'password' IDENTIFIED BY "password";
- GRANT ALL PRIVILEGES ON *.* TO 'username'@'password';
+                    <pre><code> CREATE TABLE utente;
+                        CREATE utenti 'username'@'localhost' IDENTIFIED BY "password";
+ GRANT ALL PRIVILEGES ON utente TO 'username'@'localhost';
  FLUSH PRIVILEGES;
                     </code></pre></li>
                     <li>Exit the MariaDB shell.</li>
                     <li>Load product inventory information into the database using the provided SQL script.</li>
+                    <pre><code>cat > db-load-script.sql <-EOF
+USE utente;
+CREATE TABLE utenti (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+INSERT INTO utenti (username, password) VALUES ('Stilton', 'stilton');
+EOF</code></pre></li>
                     <li>Make sure that the <code>index.php</code> file in your PHP code is properly configured with the username and password to connect to the MariaDB database.</li>
                 </ol>
             </div>

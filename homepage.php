@@ -16,7 +16,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             font-family: Arial, sans-serif;
             margin: 20px auto;
             max-width: 800px;
-            background-color: #212529;
+            background-color: #white;
             padding: 20px;
         }
         h1, h2 {

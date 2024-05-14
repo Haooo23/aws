@@ -34,7 +34,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             background-color: #white;
         }
         pre {
-            background-color: #ffffff;
+            background-color: #5699db;
             border: 1px solid #dee2e6;
             border-radius: 4px;
             padding: 10px;

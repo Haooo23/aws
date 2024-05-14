@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" href="../asset/img/aws_logo.png" type="image/x-icon">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -137,7 +141,6 @@
 
 <body>
     <?php
-    session_start();
     if (isset($_SESSION['error_message'])) {
         echo "<script>alert('Credenziali errate. Login fallito!');</script>";
         unset($_SESSION['error_message']);
@@ -169,5 +172,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="login.js"></script>
 </body>
-?>
+
 </html>

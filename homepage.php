@@ -87,7 +87,71 @@ services:
             <div class="card-body">
                 <h2>Step 2 — Create a PHP Container</h2>
                 <ol>
-                    <!-- Steps for creating PHP container -->
+                    <li>Create a directory for your PHP code inside your project:
+                        <pre><code>mkdir ~/docker-project/php_code</code></pre></li>
+                    <li>Clone your PHP code into the <code>php_code</code> directory.
+                        <!-- Replace [GitHub URL] with the actual URL of your PHP code -->
+                        <pre><code>git clone [GitHub URL] ~/docker-project/php_code/</code></pre></li>
+                    <li>Create a <code>Dockerfile</code> for the PHP container:
+                        <pre><code>nano ~/docker-project/php_code/Dockerfile</code></pre></li>
+                    <li>Add the following lines to the <code>Dockerfile</code>:
+                        <pre><code>FROM php:7.0-fpm
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-enable mysqli</code></pre></li>
+                    <li>Create a directory for Nginx inside your project directory:
+                        <pre><code>mkdir ~/docker-project/nginx</code></pre></li>
+                    <li>Create an Nginx default configuration file to run your PHP application:
+                        <pre><code>nano ~/docker-project/nginx/default.conf</code></pre></li>
+                    <li>Add the following Nginx configuration to the <code>default.conf</code> file:
+                        <pre><code>server {
+    listen 80 default_server;
+    root /var/www/html;
+    index index.html index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt { access_log off; log_not_found off; }
+
+    access_log off;
+    error_log /var/log/nginx/error.log error;
+
+    sendfile off;
+
+    client_max_body_size 100m;
+
+    location ~ .php$ {
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_read_timeout 300;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_intercept_errors off;
+        fastcgi_buffer_size 16k;
+        fastcgi_buffers 4 16k;
+    }
+
+    location ~ /.ht {
+        deny all;
+    }
+}</code></pre></li>
+                    <li>Create a <code>Dockerfile</code> inside the <code>nginx</code> directory to copy the Nginx default config file:
+                        <pre><code>nano ~/docker-project/nginx/Dockerfile</code></pre></li>
+                    <li>Add the following lines to the <code>Dockerfile</code> in the <code>nginx</code> directory:
+                        <pre><code>FROM nginx
+COPY ./default.conf /etc/nginx/conf.d/default.conf</code></pre></li>
+                    <li>Update the <code>docker-compose.yml</code> file with the provided contents.</li>
+                    <li>Launch the containers:
+                        <pre><code>cd ~/docker-project
+docker-compose up -d</code></pre></li>
+                    <li>Verify that the containers are running:
+                        <pre><code>docker ps</code></pre></li>
+                    <li>Access your PHP web content using the URL <code>http://your-server-ip</code> in a web browser.</li>
                 </ol>
             </div>
         </div>
@@ -96,7 +160,30 @@ services:
             <div class="card-body">
                 <h2>Step 3 — Create a MariaDB Container</h2>
                 <ol>
-                    <!-- Steps for creating MariaDB container -->
+                    <li>Edit the <code>docker-compose.yml</code> file to add an entry for a MariaDB container:
+                        <pre><code>nano ~/docker-project/docker-compose.yml</code></pre></li>
+                    <li>Update the <code>docker-compose.yml</code> file with the provided MariaDB configuration.
+                        <!-- Replace [MariaDB Configuration] with your actual MariaDB configuration -->
+                        <pre><code>services:
+  db:
+    image: mariadb
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: your_database
+      MYSQL_USER: your_user
+      MYSQL_PASSWORD: your_password</code></pre></li>
+                    <li>Run the command:
+                        <pre><code>docker-compose up -d</code></pre></li>
+                    <li>Create a CLI session inside the MariaDB container:
+                        <pre><code>docker exec -it [db container id or name] /bin/sh</code></pre></li>
+                    <li>Access MariaDB as the root user:
+                        <pre><code>mariadb -u root -pmariadb</code></pre></li>
+                    <li>Create a new user for the database and grant all privileges to the new user.</li>
+                    <li>Exit the MariaDB shell.</li>
+                    <li>Load product inventory information into the database using the provided SQL script.</li>
+                    <li>Make sure that the <code>index.php</code> file in your PHP code is properly configured with the username and password to connect to the MariaDB database.</li>
                 </ol>
             </div>
         </div>

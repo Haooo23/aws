@@ -14,6 +14,7 @@ session_start();
         body {
             font-family: Arial, sans-serif;
             background-image: url(wallpaper.jpg);
+            background-size: 1920px 1080px;
             margin: 0;
             padding: 0;
             display: flex;

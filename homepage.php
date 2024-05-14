@@ -5,31 +5,119 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS website</title>
-    <link rel="stylesheet" href="../asset/css/style_user.css">
-    <link rel="icon" href="../asset/img/aws_logo.png" type="image/x-icon">
+    <title>Docker Project Setup</title>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Bentornato, <span id="username" data-username="<?php echo $username; ?>"></span></h1>
-        <p>Benvenuto nel sito realizzato su AWS.
-            Puoi trovare maggiori dettagli, <a href="https://github.com/NicoMezzaa/AWS-Project" id="github-link" target="_blank">Clicca qui</a>.</p>
-    </div>
+    <h1>Docker Project Setup</h1>
 
-    <div class="theme-toggle">
-        <h2></h2>
-        <label class="switch">
-            <input type="checkbox" onclick="switchTheme()">
-            <span class="slider"></span>
-        </label>
-    </div>
+    <h2>Step 1 — Create a Nginx Container</h2>
+    <ol>
+        <li>Create a directory for your project and navigate to it:
+            <pre><code>mkdir ~/docker-project
+cd ~/docker-project</code></pre></li>
+        <li>Create a <code>docker-compose.yml</code> file for launching the Nginx container:
+            <pre><code>nano docker-compose.yml</code></pre></li>
+        <li>Add the following configuration to the <code>docker-compose.yml</code> file:
+            <pre><code>version: "3.9"
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    ports:
+      - 80:80</code></pre></li>
+        <li>Launch the Nginx container:
+            <pre><code>docker-compose up -d</code></pre></li>
+        <li>Verify that the Nginx container is running:
+            <pre><code>docker ps</code></pre></li>
+        <li>Access your Nginx container using the URL <code>http://your-server-ip</code> in a web browser.</li>
+    </ol>
 
-    <script src="user.js"></script>
+    <h2>Step 2 — Create a PHP Container</h2>
+    <ol>
+        <li>Create a directory for your PHP code inside your project:
+            <pre><code>mkdir ~/docker-project/php_code</code></pre></li>
+        <li>Clone your PHP code into the <code>php_code</code> directory.</li>
+        <li>Create a <code>Dockerfile</code> for the PHP container:
+            <pre><code>nano ~/docker-project/php_code/Dockerfile</code></pre></li>
+        <li>Add the following lines to the <code>Dockerfile</code>:
+            <pre><code>FROM php:7.0-fpm
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-enable mysqli</code></pre></li>
+        <li>Create a directory for Nginx inside your project directory:
+            <pre><code>mkdir ~/docker-project/nginx</code></pre></li>
+        <li>Create an Nginx default configuration file to run your PHP application:
+            <pre><code>nano ~/docker-project/nginx/default.conf</code></pre></li>
+        <li>Add the following Nginx configuration to the <code>default.conf</code> file:
+            <pre><code>server {
+    listen 80 default_server;
+    root /var/www/html;
+    index index.html index.php;
+
+    charset utf-8;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt { access_log off; log_not_found off; }
+
+    access_log off;
+    error_log /var/log/nginx/error.log error;
+
+    sendfile off;
+
+    client_max_body_size 100m;
+
+    location ~ .php$ {
+        fastcgi_split_path_info ^(.+.php)(/.+)$;
+        fastcgi_pass php:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_read_timeout 300;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_intercept_errors off;
+        fastcgi_buffer_size 16k;
+        fastcgi_buffers 4 16k;
+    }
+
+    location ~ /.ht {
+        deny all;
+    }
+}</code></pre></li>
+        <li>Create a <code>Dockerfile</code> inside the <code>nginx</code> directory to copy the Nginx default config file:
+            <pre><code>nano ~/docker-project/nginx/Dockerfile</code></pre></li>
+        <li>Add the following lines to the <code>Dockerfile</code> in the <code>nginx</code> directory:
+            <pre><code>FROM nginx
+COPY ./default.conf /etc/nginx/conf.d/default.conf</code></pre></li>
+        <li>Update the <code>docker-compose.yml</code> file with the provided contents.</li>
+        <li>Launch the containers:
+            <pre><code>cd ~/docker-project
+docker-compose up -d</code></pre></li>
+        <li>Verify that the containers are running:
+            <pre><code>docker ps</code></pre></li>
+        <li>Access your PHP web content using the URL <code>http://your-server-ip</code> in a web browser.</li>
+    </ol>
+
+    <h2>Step 3 — Create a MariaDB Container</h2>
+    <ol>
+        <li>Edit the <code>docker-compose.yml</code> file to add an entry for a MariaDB container:
+            <pre><code>nano ~/docker-project/docker-compose.yml</code></pre></li>
+        <li>Update the <code>docker-compose.yml</code> file with the provided MariaDB configuration.</li>
+        <li>Run the command:
+            <pre><code>docker-compose up -d</code></pre></li>
+        <li>Create a CLI session inside the MariaDB container:
+            <pre><code>docker exec -it [db container id or name] /bin/sh</code></pre></li>
+        <li>Access MariaDB as the root user:
+            <pre><code>mariadb -u root -pmariadb</code></pre></li>
+        <li>Create a new user for the database and grant all privileges to the new user.</li>
+        <li>Exit the MariaDB shell.</li>
+        <li>Load product inventory information into the database using the provided SQL script.</li>
+        <li>Make sure that the <code>index.php</code> file in your PHP code is properly configured with the username and password to connect to the MariaDB database.</li>
+    </ol>
 </body>
-
 </html>
+

@@ -216,7 +216,10 @@ CREATE TABLE utenti (
 );
 
 INSERT INTO utenti (username, password) VALUES ('Stilton', 'stilton');
+
 EOF</code></pre></li>
+                    <li>Run the SQL script:</li>
+                    <pre><code>mariadb -u root -pmariadb < db-load-script.sql</code></pre></li>
                     <li>Make sure that the <code>index.php</code> file in your PHP code is properly configured with the username and password to connect to the MariaDB database.</li>
                 </ol>
             </div>

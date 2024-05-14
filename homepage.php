@@ -200,6 +200,9 @@ volumes:
                     <li>Access MariaDB as the root user:
                         <pre><code>mariadb -u root -pmariadb</code></pre></li>
                     <li>Create a new user for the database and grant all privileges to the new user.</li>
+                    <pre><code>
+                    <li>Create a new user for the database:</li>
+                    CREATE USER 'username'@'password' IDENTIFIED BY "password";</code></pre>
                     <li>Exit the MariaDB shell.</li>
                     <li>Load product inventory information into the database using the provided SQL script.</li>
                     <li>Make sure that the <code>index.php</code> file in your PHP code is properly configured with the username and password to connect to the MariaDB database.</li>

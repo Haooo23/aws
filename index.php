@@ -162,13 +162,6 @@ session_start();
             </form>
         </div>
     </div>
-
-    <div class="theme-toggle">
-        <label class="switch">
-            <input type="checkbox" onclick="switchTheme()">
-            <span class="slider round"></span>
-        </label>
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
     <script src="login.js"></script>
 </body>

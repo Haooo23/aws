@@ -9,8 +9,6 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $password = md5($password);
-
     // query per verificare se l'utente esiste gia nel database
     $query = "SELECT * FROM utenti WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($query);

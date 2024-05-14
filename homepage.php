@@ -16,6 +16,8 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             font-family: Arial, sans-serif;
             margin: 20px auto;
             max-width: 800px;
+            background-color: #f8f9fa;
+            padding: 20px;
         }
         h1, h2 {
             text-align: center;
@@ -23,10 +25,15 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             margin-bottom: 20px;
         }
         .card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
             margin-bottom: 20px;
         }
+        .card-body {
+            padding: 20px;
+        }
         pre {
-            background-color: #f8f9fa;
+            background-color: #ffffff;
             border: 1px solid #dee2e6;
             border-radius: 4px;
             padding: 10px;

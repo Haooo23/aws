@@ -8,7 +8,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOCKER PROJECT SETUP</title>
+    <title>Docker Project Setup</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-5GXi7WbGMuZlTMbNdM1hiF+Qz3eXpbeuLz9XTv2T5MI5jldVP9hl0BfKVz4CEstB" crossorigin="anonymous">
     <style>
@@ -163,36 +163,8 @@ docker-compose up -d</code></pre></li>
                     <li>Edit the <code>docker-compose.yml</code> file to add an entry for a MariaDB container:
                         <pre><code>nano ~/docker-project/docker-compose.yml</code></pre></li>
                     <li>Update the <code>docker-compose.yml</code> file with the provided MariaDB configuration.
-                        version: "3.9"
-                        services:
-                           nginx:
-                             build: ./nginx/
-                             ports:
-                               - 80:80
-                          
-                             volumes:
-                                 - ./php_code/:/var/www/html/
-                        
-                           php:
-                             build: ./php_code/
-                             expose:
-                               - 9000
-                             volumes:
-                                - ./php_code/:/var/www/html/
-                        
-                        
-                           db:    
-                              image: mariadb  
-                              volumes: 
-                                -    mysql-data:/var/lib/mysql
-                              environment:  
-                               MYSQL_ROOT_PASSWORD: mariadb
-                               MYSQL_DATABASE: ecomdb 
-                        
-                        
-                            volumes:
-                            mysql-data:
-                                                <pre><code>services:
+                        <!-- Replace [MariaDB Configuration] with your actual MariaDB configuration -->
+                        <pre><code>services:
   db:
     image: mariadb
     command: --default-authentication-plugin=mysql_native_password
@@ -221,3 +193,4 @@ docker-compose up -d</code></pre></li>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-sE1DHoA8PfPv/gFJ8r+jzM8P9anQhiqE2ImFNmzx3sveZhLI1m4qAx3Dw3gX" crossorigin="anonymous"></script>
 </body>
 </html>
+

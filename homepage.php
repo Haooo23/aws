@@ -16,27 +16,27 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             font-family: Arial, sans-serif;
             margin: 20px auto;
             max-width: 800px;
-            background-color: #white;
+            background-color: #f8f9fa; /* Light grey background */
             padding: 20px;
         }
         h1, h2 {
             text-align: center;
-            color: #007bff;
+            color: #007bff; /* Blue color for main titles */
             margin-bottom: 20px;
         }
         .card {
-            border: 1px solid #ccc;
-            border-radius: 10px;
+            border: 2px solid #007bff; /* Blue border for cards */
+            border-radius: 15px;
             margin-bottom: 20px;
+            background-color: #fff; /* White background for cards */
         }
         .card-body {
             padding: 20px;
-            background-color: #white;
         }
         pre {
-            background-color: #5699db;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
+            background-color: #ececec; /* Light grey background for code blocks */
+            border: 1px solid #ddd; /* Light grey border for code blocks */
+            border-radius: 5px;
             padding: 10px;
             overflow-x: auto;
         }
@@ -175,4 +175,6 @@ docker-compose up -d</code></pre></li>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-sE1DHoA8PfPv/gFJ8r+jzM8P9anQhiqE2ImFNmzx3sveZhLI1m4qAx3Dw3gX" crossorigin="anonymous"></script>
 </body>
+</html>
+
 </html>

@@ -16,32 +16,60 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
             font-family: Arial, sans-serif;
             margin: 20px auto;
             max-width: 800px;
-            background-color: #f8f9fa; /* Light grey background */
+            background-color: #f0f0f0; /* Light grey background */
             padding: 20px;
         }
         h1, h2 {
             text-align: center;
-            color: #007bff; /* Blue color for main titles */
+            color: #333; /* Dark grey color for main titles */
             margin-bottom: 20px;
         }
         .card {
-            border: 2px solid #007bff; /* Blue border for cards */
-            border-radius: 15px;
-            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin-bottom: 30px;
             background-color: #fff; /* White background for cards */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
         }
         .card-body {
             padding: 20px;
         }
         pre {
-            background-color: #ececec; /* Light grey background for code blocks */
+            background-color: #f8f9fa; /* Light grey background for code blocks */
             border: 1px solid #ddd; /* Light grey border for code blocks */
             border-radius: 5px;
-            padding: 10px;
+            padding: 15px;
             overflow-x: auto;
+            margin-bottom: 15px;
         }
         code {
             font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            color: #333; /* Dark grey color for code */
+        }
+        .container {
+            padding: 0 15px; /* Add padding to container */
+        }
+        ol {
+            list-style-type: decimal-leading-zero; /* Use leading zero numbering */
+        }
+        li {
+            margin-bottom: 10px; /* Add space between list items */
+        }
+        .card-title {
+            font-size: 1.5rem; /* Increase title font size */
+            margin-bottom: 15px; /* Add space below title */
+            color: #007bff; /* Blue color for card titles */
+        }
+        .btn {
+            background-color: #007bff; /* Blue background for buttons */
+            border-color: #007bff; /* Blue border color for buttons */
+        }
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            border-color: #0056b3; /* Darker blue border on hover */
+        }
+        .btn:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); /* Blue shadow on focus */
         }
     </style>
 </head>
@@ -49,13 +77,13 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>Docker Project Setup</h1>
+                <h1 class="card-title">Docker Project Setup</h1>
             </div>
         </div>
 
         <div class="card">
             <div class="card-body">
-                <h2>Step 1 — Create a Nginx Container</h2>
+                <h2 class="card-title">Step 1 — Create a Nginx Container</h2>
                 <ol>
                     <li>Create a directory for your project and navigate to it:
                         <pre><code>mkdir ~/docker-project
@@ -81,7 +109,7 @@ services:
 
         <div class="card">
             <div class="card-body">
-                <h2>Step 2 — Create a PHP Container</h2>
+                <h2 class="card-title">Step 2 — Create a PHP Container</h2>
                 <ol>
                     <li>Create a directory for your PHP code inside your project:
                         <pre><code>mkdir ~/docker-project/php_code</code></pre></li>
@@ -152,7 +180,7 @@ docker-compose up -d</code></pre></li>
 
         <div class="card">
             <div class="card-body">
-                <h2>Step 3 — Create a MariaDB Container</h2>
+                <h2 class="card-title">Step 3 — Create a MariaDB Container</h2>
                 <ol>
                     <li>Edit the <code>docker-compose.yml</code> file to add an entry for a MariaDB container:
                         <pre><code>nano ~/docker-project/docker-compose.yml</code></pre></li>
@@ -175,6 +203,4 @@ docker-compose up -d</code></pre></li>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-sE1DHoA8PfPv/gFJ8r+jzM8P9anQhiqE2ImFNmzx3sveZhLI1m4qAx3Dw3gX" crossorigin="anonymous"></script>
 </body>
-</html>
-
 </html>

@@ -201,7 +201,7 @@ volumes:
                         <pre><code>mariadb -u root -pmariadb</code></pre></li>
                     <li>Create a new user for the database and grant all privileges to the new user.</li>
                     <pre><code> CREATE TABLE utente;
-                        CREATE utenti 'username'@'localhost' IDENTIFIED BY "password";
+ CREATE utenti 'username'@'localhost' IDENTIFIED BY "password";
  GRANT ALL PRIVILEGES ON utente TO 'username'@'localhost';
  FLUSH PRIVILEGES;
                     </code></pre></li>

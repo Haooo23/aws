@@ -164,16 +164,35 @@ docker-compose up -d</code></pre></li>
                         <pre><code>nano ~/docker-project/docker-compose.yml</code></pre></li>
                     <li>Update the <code>docker-compose.yml</code> file with the provided MariaDB configuration.
                         <!-- Replace [MariaDB Configuration] with your actual MariaDB configuration -->
-                        <pre><code>services:
-  db:
-    image: mariadb
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: your_database
-      MYSQL_USER: your_user
-      MYSQL_PASSWORD: your_password</code></pre></li>
+                        <pre><code>version: "3.9"
+services:
+   nginx:
+     build: ./nginx/
+     ports:
+       - 80:80
+  
+     volumes:
+         - ./php_code/:/var/www/html/
+
+   php:
+     build: ./php_code/
+     expose:
+       - 9000
+     volumes:
+        - ./php_code/:/var/www/html/
+
+
+   db:    
+      image: mariadb  
+      volumes: 
+        -    mysql-data:/var/lib/mysql
+      environment:  
+       MYSQL_ROOT_PASSWORD: mariadb
+       MYSQL_DATABASE: ecomdb 
+
+
+volumes:
+    mysql-data:</code></pre></li>
                     <li>Run the command:
                         <pre><code>docker-compose up -d</code></pre></li>
                     <li>Create a CLI session inside the MariaDB container:

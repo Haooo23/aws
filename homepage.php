@@ -201,8 +201,8 @@ volumes:
                         <pre><code>mariadb -u root -pmariadb</code></pre></li>
                     <li>Create a new user for the database and grant all privileges to the new user.</li>
                     <pre> CREATE USER 'username'@'password' IDENTIFIED BY "password";
-                    GRANT ALL PRIVILEGES ON *.* TO 'username'@'password';
-                    FLUSH PRIVILEGES;
+        GRANT ALL PRIVILEGES ON *.* TO 'username'@'password';
+        FLUSH PRIVILEGES;
                     </code></pre><code></li>
                     <li>Exit the MariaDB shell.</li>
                     <li>Load product inventory information into the database using the provided SQL script.</li>

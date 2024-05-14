@@ -14,14 +14,16 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 800px;
         }
-        .container {
+        h1, h2 {
             text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
         }
         .card {
-            margin: 20px auto;
-            max-width: 600px;
+            margin-bottom: 20px;
         }
         pre {
             background-color: #f8f9fa;
@@ -39,13 +41,13 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Username';
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1 class="card-title">Docker Project Setup</h1>
+                <h1>Docker Project Setup</h1>
             </div>
         </div>
 
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Step 1 — Create a Nginx Container</h2>
+                <h2>Step 1 — Create a Nginx Container</h2>
                 <ol>
                     <li>Create a directory for your project and navigate to it:
                         <pre><code>mkdir ~/docker-project
@@ -71,7 +73,7 @@ services:
 
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Step 2 — Create a PHP Container</h2>
+                <h2>Step 2 — Create a PHP Container</h2>
                 <ol>
                     <li>Create a directory for your PHP code inside your project:
                         <pre><code>mkdir ~/docker-project/php_code</code></pre></li>
@@ -142,7 +144,7 @@ docker-compose up -d</code></pre></li>
 
         <div class="card">
             <div class="card-body">
-                <h2 class="card-title">Step 3 — Create a MariaDB Container</h2>
+                <h2>Step 3 — Create a MariaDB Container</h2>
                 <ol>
                     <li>Edit the <code>docker-compose.yml</code> file to add an entry for a MariaDB container:
                         <pre><code>nano ~/docker-project/docker-compose.yml</code></pre></li>

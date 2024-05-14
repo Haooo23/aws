@@ -18,7 +18,7 @@ if (!isset($_POST['username']) || !isset($_POST['password'])) {
     if ($result->num_rows > 0) {
         $_SESSION['logged'] = true;
         $_SESSION['username'] = $username;
-        header("Location: user.php");
+        header("Location: homepage.php");
     } else {
         $_SESSION['error_message'] = "Credenziali errate. Login fallito!";
         header("Location: index.php"); 

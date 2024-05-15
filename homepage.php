@@ -223,6 +223,7 @@ volumes:
  FLUSH PRIVILEGES;
                     </code></pre></li>
                     <li>Exit the MariaDB shell.</li>
+                    <pre><code>exit</code></pre></li>
                     <li>Load product inventory information into the database using the provided SQL script.</li>
                     <pre><code>cat > db-load-script.sql <-EOF
 USE utente;

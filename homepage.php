@@ -146,6 +146,23 @@ RUN docker-php-ext-enable mysqli</code></pre></li>
                         <pre><code>FROM nginx
 COPY ./default.conf /etc/nginx/conf.d/default.conf</code></pre></li>
                     <li>Update the <code>docker-compose.yml</code> file with the provided contents.</li>
+                    <pre><code>version: "3.9"
+services:
+   nginx:
+     build: ./nginx/
+     ports:
+       - 80:80
+  
+     volumes:
+         - ./php_code/:/var/www/html/
+
+   php:
+     build: ./php_code/
+     expose:
+       - 9000
+     volumes:
+        - ./php_code/:/var/www/html/
+                    </code></pre></li>
                     <li>Launch the containers:
                         <pre><code>cd ~/docker-project
 docker-compose up -d</code></pre></li>
